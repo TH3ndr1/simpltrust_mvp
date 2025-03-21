@@ -1,0 +1,131 @@
+# Platform-specific files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# IDEs and editors
+.specstory/
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+.viminfo
+
+# Python
+.venvst/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.coverage.*
+
+# JavaScript/TypeScript
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.pnpm-debug.log
+.pnp.*
+.npm
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.next/
+out/
+.nuxt/
+dist/
+.cache/
+.parcel-cache/
+
+# Database
+*.sqlite3
+*.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Build artifacts
+build/
+dist/
+public/build/
+
+# Tests
+coverage/
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Docusaurus cache
+.docusaurus
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# Node.js Version Manager related
+.nvmrc
+
+# Temporary folders
+tmp/
+temp/
+
+# System Files
+.directory 

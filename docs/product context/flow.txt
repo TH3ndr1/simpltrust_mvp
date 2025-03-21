@@ -1,0 +1,10 @@
+Traditional GRC related PDCA Cycle
+
+The PDCA cycle is easy to understand and a best practice for structurally embedding continuous improvement in an organization. 
+ When mapping traditional GRC aspect on the cycle, it becomes clear that there is (inherently) a certain amount of complexity in the model. 
+	•	Similar activities are described under slightly different names, depending on the phase they are in. E.g. Develop Policies & Procedures, Update Policies & Procedures. This makes sense as there is a semantic similarity between the Do and Act phases. Since it is the intent of SimplTrust to keep things simple, we want to describe activity only once, even if it can appear multiple times in a workflow. 
+	•	There are similarities between activities in terms of the type of work they represent.  E.g. Implementing Procedures or Implementing corrective actions are both examples of implementations that need to be performed by named people in the organization. As SimplTrust wants to keep things simple, we simply consider these to be ‘actions’. The platform will suggest what type of action is to be undertaken for which context (e.g. implement procedure x, implement a corrective action for asset Y, etc.) by whom.
+	•	More stuff to be added later in introduction (focus on BC, focus on assets, focus on regulatory reference modeling, …)
+
+Revised model
+
