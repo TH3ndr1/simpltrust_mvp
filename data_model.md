@@ -676,6 +676,13 @@ This document consolidates the data models from all feature specifications into 
 - Assets are mapped to controls to indicate which controls apply to which assets
 - This mapping helps in identifying control coverage across the asset inventory
 
+### Regulation-Control Relationships
+- Regulations are broken down into specific regulatory requirements
+- Controls are mapped to regulatory requirements through control-regulation mappings
+- A single control can satisfy multiple regulatory requirements
+- A regulatory requirement can be implemented by multiple controls
+- This mapping enables regulatory coverage analysis and compliance reporting
+
 ### Capability-Regulation Relationships
 - Business capabilities are mapped to regulations to understand regulatory impact on business functions
 - This mapping provides business context for compliance activities
@@ -701,6 +708,15 @@ erDiagram
     Organizations ||--o{ Assets : owns
     Organizations ||--o{ AssessmentTemplates : creates
     Organizations ||--o{ Assessments : conducts
+    Organizations ||--o{ InfrastructureSetup : manages
+    Organizations ||--o{ IntegrationEndpoint : integrates
+    Organizations ||--o{ AutomationRule : defines
+    Organizations ||--o{ TrainingModule : offers
+    Organizations ||--o{ Task : assigns
+    Organizations ||--o{ Recommendation : generates
+    Organizations ||--o{ Questionnaire : creates
+    Organizations ||--o{ ImplementationMetric : tracks
+    Organizations ||--o{ ExecutiveDashboard : manages
     
     BusinessCapabilities ||--o{ CapabilityAttributes : has
     BusinessCapabilities ||--o{ CapabilityVersions : tracks
@@ -709,11 +725,18 @@ erDiagram
     
     RegulatoryScope }o--|| Regulations : references
     
+    Regulations ||--o{ RegulatoryRequirement : contains
+    RegulatoryRequirement }o--o{ Control : mapped_through
+    Control }o--o{ RegulatoryRequirement : implements
+    Regulations ||--o{ RegulatoryChangeLog : tracks
+    
     ControlFramework ||--o{ Control : contains
     Control ||--o{ ControlVersion : tracks
     Control }o--o{ ControlTag : tagged_with
     Control }o--o{ Control : relates_to
     Control ||--o{ ControlResponsibility : assigns
+    Control ||--o{ ControlRegulationMapping : maps_to
+    ControlRegulationMapping }o--|| RegulatoryRequirement : references
     
     Assets ||--o{ AssetAttributes : has
     Assets ||--o{ AssetCategoryAssignments : categorized_by
@@ -756,14 +779,13 @@ erDiagram
     Assessments }o--o{ ComplianceGaps : identifies
     EvidenceItem }o--o{ GapEvidence : used_as
     
-    Users ||--o{ Organizations : manages
-    Users ||--o{ BusinessCapabilities : owns
-    Users ||--o{ Assets : owns
-    Users ||--o{ EvidenceItem : uploads
-    Users ||--o{ Control : creates
-    Users ||--o{ Assessments : conducts
-    Users ||--o{ AssessmentResponses : provides
-    Users ||--o{ ComplianceGaps : manages
+    IntegrationEndpoint ||--o{ IntegrationMapping : maps
+    Task ||--o{ TaskDependency : depends_on
+    Task ||--o{ TaskComment : has
+    Task ||--o{ TaskAttachment : includes
+    Recommendation ||--o{ RecommendationHistory : tracks
+    Questionnaire ||--o{ Question : includes
+    Question ||--o{ Answer : collects
 ```
 
 ## Entity Relationship Diagram
@@ -984,11 +1006,18 @@ erDiagram
     
     RegulatoryScope }o--|| Regulations : references
     
+    Regulations ||--o{ RegulatoryRequirement : contains
+    RegulatoryRequirement }o--o{ Control : mapped_through
+    Control }o--o{ RegulatoryRequirement : implements
+    Regulations ||--o{ RegulatoryChangeLog : tracks
+    
     ControlFramework ||--o{ Control : contains
     Control ||--o{ ControlVersion : tracks
     Control }o--o{ ControlTag : tagged_with
     Control }o--o{ Control : relates_to
     Control ||--o{ ControlResponsibility : assigns
+    Control ||--o{ ControlRegulationMapping : maps_to
+    ControlRegulationMapping }o--|| RegulatoryRequirement : references
     
     Assets ||--o{ AssetAttributes : has
     Assets ||--o{ AssetCategoryAssignments : categorized_by
@@ -1043,3 +1072,36 @@ erDiagram
 ## Additional Note
 
 These additions were derived by processing each feature specification document sequentially to ensure that all data models are fully consolidated in the SimpleTrust data model. 
+
+### Regulatory Mapping
+
+**RegulatoryRequirement**
+- `id`: uuid (primary key)
+- `regulation_id`: uuid (foreign key to Regulations)
+- `requirement_code`: string
+- `requirement_text`: text
+- `section_reference`: string
+- `description`: text
+- `effective_date`: date
+- `created_at`: timestamp
+- `updated_at`: timestamp
+
+**ControlRegulationMapping**
+- `id`: uuid (primary key)
+- `control_id`: uuid (foreign key to Control)
+- `regulatory_requirement_id`: uuid (foreign key to RegulatoryRequirement)
+- `mapping_type`: enum [full_coverage, partial_coverage, supports]
+- `mapping_notes`: text
+- `status`: enum [draft, active, archived]
+- `created_by`: uuid (foreign key to Users)
+- `created_at`: timestamp
+- `updated_at`: timestamp
+
+**RegulatoryChangeLog**
+- `id`: uuid (primary key)
+- `regulation_id`: uuid (foreign key to Regulations)
+- `change_description`: text
+- `change_type`: enum [addition, modification, removal]
+- `affected_requirements`: uuid[] (foreign keys to RegulatoryRequirement)
+- `effective_date`: date
+- `created_at`: timestamp 
