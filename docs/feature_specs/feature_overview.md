@@ -8,6 +8,7 @@ Features are organized under epics that represent major value streams. This stru
 
 | Epic ID | Epic Name | Description | Priority |
 |---------|-----------|-------------|----------|
+| E00 | Foundation | Establish technical and UI infrastructure foundation | High |
 | E01 | Compliance Landscape Definition | Define regulatory landscape and map to business capabilities | High |
 | E02 | Unified Compliance Framework | Create consolidated control framework across regulations | High |
 | E03 | Asset Risk Management | Manage assets and determine security priorities | High |
@@ -18,11 +19,18 @@ Features are organized under epics that represent major value streams. This stru
 | E08 | Integration & Extensibility | Connect with external systems and extend platform capabilities | Low |
 | E09 | Reporting | Generate comprehensive reports and dashboards for various stakeholders | Medium |
 
-For complete epic definitions, see [Epics](../agile_roadmap/epics.md).
+For complete epic definitions, see [Epics](../project_management/epics.md).
 
 ## Complete MVP Feature Set
 
 The following features comprise the Minimum Viable Product for SimplTrust, prioritized according to their role in validating key differentiators:
+
+### Epic E00: Foundation
+
+| Feature ID | Feature Name | Description | Priority | Implementation Sprint |
+|------------|--------------|-------------|----------|----------------------|
+| [INFRA-001](./INFRA-001_infrastructure_setup.md) | Infrastructure Setup | Core technical platform setup including Next.js project, Supabase backend, authentication, and deployment | High | 1 |
+| [UX-001](./UX-001_core_ui_foundation.md) | Core UI Foundation | Design system, UI components, and interaction patterns that ensure a consistent user experience | High | 1 |
 
 ### Epic E01: Compliance Landscape Definition
 

@@ -39,26 +39,22 @@ flowchart LR
 - [ ] **ORG-001-005**: Implement business capability mapping visualization
 - [ ] **UX-001-003**: Design responsive layouts for tablet and mobile
 - [ ] **UX-001-004**: Create accessibility conformance testing plan
-- [ ] **AI-001-001**: Implement advanced AI recommendation capabilities
-- [ ] **REP-002-001**: Develop executive dashboard (Post-MVP)
-- [ ] **REP-003-001**: Implement external reporting capabilities (Post-MVP)
-- [ ] **IMP-004-001**: Implement implementation metrics (Post-MVP)
 
 ### Sprint Planning
 
-- [ ] **INFRA-001-001**: Set up Supabase backend infrastructure (Epic: Foundation)
-- [ ] **INFRA-001-002**: Implement user authentication system (Epic: Foundation)
-- [ ] **INFRA-001-003**: Configure Vercel deployment (Epic: Foundation)
+- [ ] **INFRA-001-001**: Set up Supabase backend infrastructure (Epic: E00)
+- [ ] **INFRA-001-002**: Implement user authentication system (Epic: E00)
+- [ ] **INFRA-001-003**: Configure Vercel deployment (Epic: E00)
 - [ ] **ORG-001-001**: Implement simplified regulatory questionnaire (Epic: E01)
 - [ ] **ORG-001-002**: Create industry-specific templates for manufacturing sector (Epic: E01)
-- [ ] **UX-001-001**: Design organizational scoping module UI (Epic: E01)
-- [ ] **UX-001-002**: Create basic design system for consistent UI (Epic: Foundation)
-- [ ] **AI-001-000**: Set up AI service integration foundation (Epic: E05)
+- [ ] **UX-001-001**: Design organizational scoping module UI (Epic: E00)
+- [ ] **UX-001-002**: Create basic design system for consistent UI (Epic: E00)
+- [ ] **ARP-001-000**: Set up AI service integration foundation (Epic: E05)
 
 ### In Progress
 
-- [ ] **INFRA-001-000**: Initialize Next.js project with TypeScript (Epic: Foundation)
-- [ ] **UX-001-000**: Create initial design mockups and wireframes (Epic: Foundation)
+- [ ] **INFRA-001-000**: Initialize Next.js project with TypeScript (Epic: E00)
+- [ ] **UX-001-000**: Create initial design mockups and wireframes (Epic: E00)
 
 ### Code Review
 
@@ -87,7 +83,7 @@ No items completed yet.
 - [ ] **ARP-001-001**: Implement AI recommendation engine foundation (Epic: E05)
 - [ ] **ARP-001-002**: Create initial recommendation templates for common gaps (Epic: E05)
 - [ ] **ORG-001-006**: Enhance business capability mapping (Epic: E01)
-- [ ] **UX-001-005**: Design unified framework visualization components (Epic: E02)
+- [ ] **UX-001-005**: Design unified framework visualization components (Epic: E00)
 
 ## Future Sprints
 
@@ -98,21 +94,21 @@ No items completed yet.
 - [ ] **ASM-001-003**: Implement asset criticality rating (Epic: E03)
 - [ ] **ASM-001-004**: Develop asset-to-control linking functionality (Epic: E03)
 - [ ] **ARP-001-003**: Enhance AI recommendations with business context (Epic: E05)
-- [ ] **ORG-001-007**: Link business capabilities to assets and controls (Epic: E01)
+- [ ] **ORG-003-001**: Link business capabilities to assets and controls (Epic: E01)
 
 ### Sprint 4 - Simplified Assessment & AI-Powered Action Planning
 
 - [ ] **ASP-001-001**: Implement simplified assessment templates (Epic: E04)
 - [ ] **GAP-001-001**: Develop basic gap identification algorithm (Epic: E04)
 - [ ] **ARP-001-004**: Complete AI recommendation engine (Epic: E05)
-- [ ] **ARP-001-005**: Implement task prioritization based on impact (Epic: E05)
+- [ ] **ARP-003-001**: Implement task prioritization based on impact (Epic: E05)
 - [ ] **IMP-001-001**: Develop implementation tracking dashboard (Epic: E05)
 - [ ] **IMP-002-001**: Create task status tracking (Epic: E05)
 
 ### Sprint 5 - Enhanced Assessment & Risk Management
 
 - [ ] **ASP-001-002**: Enhance assessment capabilities (Epic: E04)
-- [ ] **ASP-001-003**: Add assessment scheduling and notifications (Epic: E04)
+- [ ] **ASP-003-001**: Add assessment scheduling and notifications (Epic: E04)
 - [ ] **GAP-001-002**: Complete gap analysis with visualization (Epic: E04)
 - [ ] **GAP-003-001**: Implement gap reporting (Epic: E04)
 - [ ] **RSK-001-001**: Implement risk assessment linkage to assets (Epic: E03)
@@ -128,9 +124,8 @@ No items completed yet.
 - [ ] **EVD-003-001**: Create evidence search functionality (Epic: E06)
 - [ ] **TRN-001-001**: Create basic training module framework (Epic: E07)
 - [ ] **CMN-001-001**: Implement simple compliance monitoring (Epic: E07)
-- [ ] **UX-001-006**: Polish user interface for MVP release (Epic: Foundation)
-- [ ] **BUG-000**: Address bug fixes and performance improvements (Epic: Foundation)
-- [ ] **DOC-000**: Create user documentation and help resources (Epic: Foundation)
+- [ ] **UX-001-006**: Polish user interface for MVP release (Epic: E00)
+- [ ] **DOC-000**: Create user documentation and help resources (Epic: E00)
 - [ ] **REP-002-001**: Develop executive dashboard (Epic: E09)
 - [ ] **REP-003-001**: Implement external reporting capabilities (Epic: E09)
 
@@ -144,14 +139,14 @@ No items completed yet.
 
 | Task ID | Dependencies | Epic | Priority |
 |---------|--------------|------|----------|
-| INFRA-001-000 | None | Foundation | High |
-| UX-001-000 | None | Foundation | High |
-| INFRA-001-001 | INFRA-001-000 | Foundation | High |
-| INFRA-001-002 | INFRA-001-001 | Foundation | High |
+| INFRA-001-000 | None | E00 | High |
+| UX-001-000 | None | E00 | High |
+| INFRA-001-001 | INFRA-001-000 | E00 | High |
+| INFRA-001-002 | INFRA-001-001 | E00 | High |
 | ORG-001-001 | INFRA-001-002, UX-001-000 | E01 | High |
-| AI-001-000 | INFRA-001-001 | E05 | High |
+| ARP-001-000 | INFRA-001-001 | E05 | High |
 | UCF-001-001 | ORG-001-001, INFRA-001-001 | E02 | High |
-| ARP-001-001 | AI-001-000 | E05 | High |
+| ARP-001-001 | ARP-001-000 | E05 | High |
 | ASM-001-001 | INFRA-001-001 | E03 | High |
 | ARP-001-003 | ARP-001-001, ASM-001-001 | E05 | High |
 | ASP-001-001 | UCF-001-004, ASM-001-004 | E04 | Medium |

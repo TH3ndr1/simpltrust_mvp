@@ -1,0 +1,257 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Development Guidelines for SimplTrust Platform
+
+## ⚠️ Development Context Management (CRITICAL)
+For all development tasks, refer to the kanban board (`docs/project_management/kanban.md`) for:
+- Current sprint priorities
+- Task dependencies
+- Value validation points
+- Quality assurance approach
+
+Always include:
+1. Core documentation (`docs/index.md`, `README.md`)
+2. Feature specifications relevant to the task
+3. Configuration files appropriate to the environment
+
+**CRITICAL**: Update `docs/project_management/kanban.md` immediately after completing any task or subtask.
+
+## Core Principles
+
+- **Value-Driven Development:** Focus on validating key differentiators early while building only the minimal necessary supporting functionality
+- **Modularity & Reuse:** Implement clean separation of concerns across all components
+- **Type Safety & Readability:** Use TypeScript and Python type hints consistently
+- **Documentation:** Maintain clear documentation for APIs, data models, and value propositions
+
+## Key Differentiators (Protect These!)
+
+1. **AI-Powered Guidance**: Converting complex compliance requirements into actionable tasks with minimal human expertise
+2. **Unified Compliance Framework**: Eliminating redundant work across multiple regulatory frameworks
+3. **Business-Centric Approach**: Linking compliance to business capabilities and assets for contextual relevance
+
+## Backend Development
+
+- **Supabase & PostgreSQL:**
+  - Follow row-level security best practices
+  - Implement efficient data models aligned with feature specifications
+  - Use type-safe database access patterns
+  ```typescript
+  // Example Supabase query with proper typing
+  const { data, error } = await supabase
+    .from<Organization>('organizations')
+    .select('id, name, industry, capabilities(*)')
+    .eq('tenant_id', tenantId);
+  ```
+
+- **Authentication & Security:**
+  - Use Supabase Auth for consistent authentication
+  - Implement proper access control for all endpoints
+  - Validate all inputs at the API level
+  ```typescript
+  import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+  
+  export default async function handler(req, res) {
+    const supabase = createServerSupabaseClient({ req, res })
+    const { data: { session } } = await supabase.auth.getSession()
+    
+    if (!session) {
+      return res.status(401).json({ error: 'Unauthorized' })
+    }
+    
+    // Handle authorized request
+  }
+  ```
+
+- **Error Handling & Logging:**
+  - Implement consistent error handling across all API endpoints
+  - Use structured logging for better observability
+  - Provide user-friendly error messages
+
+## Frontend Development
+
+- **Next.js & React:**
+  - Use the Next.js App Router for routing and layouts
+  - Implement server components where appropriate
+  - Leverage React Query for data fetching and state management
+  ```typescript
+  'use client'
+  
+  import { useQuery } from '@tanstack/react-query'
+  import { fetchControlFramework } from '@/lib/api'
+  
+  export default function ControlFrameworkView({ frameworkId }) {
+    const { data, isLoading, error } = useQuery({
+      queryKey: ['controlFramework', frameworkId],
+      queryFn: () => fetchControlFramework(frameworkId)
+    })
+    
+    if (isLoading) return <LoadingSpinner />
+    if (error) return <ErrorDisplay error={error} />
+    
+    return (
+      // Render component with data
+    )
+  }
+  ```
+
+- **TypeScript & Typing:**
+  - Define clear interface types for all data structures
+  - Use Zod for runtime validation of API responses
+  - Maintain strict typing across the application
+  ```typescript
+  import { z } from 'zod'
+  
+  // Define validation schema
+  const OrganizationSchema = z.object({
+    id: z.string().uuid(),
+    name: z.string().min(1),
+    industry: z.string(),
+    size: z.enum(['small', 'medium', 'enterprise']),
+    createdAt: z.string().datetime(),
+  })
+  
+  // Derive TypeScript type
+  type Organization = z.infer<typeof OrganizationSchema>
+  ```
+
+- **UI/UX Guidelines:**
+  - Follow Tailwind CSS best practices
+  - Use headless UI components for accessibility
+  - Ensure responsive design for all device sizes
+  - Maintain consistent component patterns
+  ```typescript
+  import { Dialog } from '@headlessui/react'
+  
+  export function Modal({ isOpen, onClose, title, children }) {
+    return (
+      <Dialog
+        open={isOpen}
+        onClose={onClose}
+        className="relative z-50"
+      >
+        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Panel className="mx-auto max-w-sm rounded bg-white p-6">
+            <Dialog.Title className="text-lg font-medium">{title}</Dialog.Title>
+            {children}
+          </Dialog.Panel>
+        </div>
+      </Dialog>
+    )
+  }
+  ```
+
+## AI Integration
+
+- **OpenAI API Integration:**
+  - Implement secure token management
+  - Use streaming responses for better UX
+  - Cache common recommendations where appropriate
+  ```typescript
+  export async function generateRecommendations(gapData) {
+    const response = await fetch('/api/ai/recommendations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ gaps: gapData }),
+    })
+    
+    if (!response.ok) {
+      throw new Error('Failed to generate recommendations')
+    }
+    
+    return response.json()
+  }
+  ```
+
+- **AI Model Considerations:**
+  - Balance accuracy against token usage
+  - Structure prompts for consistent outputs
+  - Implement fallbacks for API failures
+
+## Data Model Patterns
+
+- **Core Entities:**
+  - Organizations
+  - Assets
+  - Controls
+  - Frameworks
+  - Assessments
+  - Gaps
+  - Tasks
+  - Evidence
+
+- **Relationships:**
+  - Follow clear 1:N and M:N relationship patterns
+  - Use junction tables for many-to-many relationships
+  - Maintain referential integrity
+
+## Testing Strategy
+
+- **Frontend Testing:**
+  - Use React Testing Library for component tests
+  - Implement Cypress for end-to-end tests
+  - Focus on critical user flows
+
+- **API Testing:**
+  - Test all endpoints with proper authentication
+  - Validate data validation and error handling
+  - Simulate edge cases and failure scenarios
+
+## Deployment & CI/CD
+
+- **Vercel Deployment:**
+  - Configure proper environment variables
+  - Use preview deployments for feature branches
+  - Implement proper branch protection
+
+- **Supabase Management:**
+  - Use migrations for database changes
+  - Test database changes in development environments
+  - Maintain backup and restore procedures
+
+## Documentation Standards
+
+- **Code Documentation:**
+  - Document complex functions and algorithms
+  - Maintain up-to-date API documentation
+  - Update README.md with relevant changes
+
+- **User Documentation:**
+  - Keep user guides current with features
+  - Include screenshots for UI-heavy features
+  - Document common use cases and workflows
+
+## Quality Assurance
+
+- **Code Reviews:**
+  - Enforce type safety
+  - Check for proper error handling
+  - Verify adherence to project patterns
+  - Review for potential security issues
+
+- **Performance Considerations:**
+  - Optimize database queries
+  - Implement proper caching
+  - Monitor API response times
+
+## Value Validation Approach
+
+When implementing features, continuously validate against key differentiators:
+
+1. **AI-Powered Guidance:**
+   - Does the feature reduce the expertise required?
+   - Are recommendations actionable and context-aware?
+   - Is the guidance clear and unambiguous?
+
+2. **Unified Compliance Framework:**
+   - Does the approach eliminate redundant work?
+   - Is control consolidation effective?
+   - Can users easily understand the unified model?
+
+3. **Business-Centric Approach:**
+   - Is compliance linked to business capabilities?
+   - Do asset relationships provide context?
+   - Does the approach feel natural to business users? 
