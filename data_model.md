@@ -12,6 +12,20 @@ This document consolidates the data models from all feature specifications into 
 - `industry`: string
 - `size`: string
 - `region`: string
+- `vat_number`: string
+- `created_at`: timestamp
+- `updated_at`: timestamp
+ 
+#### Addresses
+- `id`: uuid (primary key)
+- `organization_id`: uuid (foreign key to organizations.id)
+- `street_line1`: string (primary street address)
+- `street_line2`: string (additional address information, optional)
+- `postal_code`: string (postal/ZIP code)
+- `city`: string (city)
+- `province`: string (province/region/state, optional)
+- `country`: string (country code, ISO 3166-1 alpha-2)
+- `address_type`: string (address type, e.g., company, billing)
 - `created_at`: timestamp
 - `updated_at`: timestamp
 

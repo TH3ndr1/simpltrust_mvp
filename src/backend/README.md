@@ -71,4 +71,49 @@ Row-level security policies ensure that users can only access data they have per
 
 ## Connection to Frontend
 
-The frontend application connects to this backend API and directly to Supabase for authentication and realtime features. 
+The frontend application connects to this backend API and directly to Supabase for authentication and realtime features.
+
+## Database Tools
+
+The following scripts are available to help manage the database:
+
+- `npm run db`: Access an interactive PostgreSQL console
+- `npm run migrate:safe`: Apply migrations in safe mode (continue on errors)
+- `npm run migrate:force`: Apply migrations with strict error checking
+- `npm run reset:dev`: Reset the database (warning: deletes all data)
+
+### Utility Scripts
+
+- `npm run fix-dates`: Fix invalid dates in organization records
+- `npm run fix-permissions`: Repair RLS policies for organization access
+- `npm run apply-security`: Apply security enhancements (audit logging, etc.)
+
+### Local Database Connection
+
+By default, the local Supabase instance exposes PostgreSQL on port 54322:
+
+```
+DATABASE_URL=postgresql://postgres:postgres@localhost:54322/postgres
+```
+
+Add this URL to your `.env` file to enable the database scripts.
+
+## Troubleshooting
+
+### Migration Issues
+
+If you encounter issues with migrations:
+
+1. Try running with the safe flag: `npm run migrate:safe`
+2. For permission errors, run: `npm run fix-permissions`
+3. For issues with organization dates, run: `npm run fix-dates`
+
+### Database Connection Issues
+
+If you can't connect to the database:
+
+1. Ensure Supabase is running: `npm run supabase:start`
+2. Verify your `.env` file has the correct database URL
+3. Check that port 54322 is not blocked by a firewall
+
+For detailed troubleshooting, see the [Troubleshooting Guide](/docs/troubleshooting.md). 

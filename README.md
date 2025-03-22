@@ -1,90 +1,91 @@
 # SimpleTrust
 
-SimpleTrust is an AI-driven compliance and cybersecurity platform designed specifically for SMEs. It simplifies complex regulatory and risk management challenges through guided workflows, automated gap analysis, and continuous monitoring.
+A secure and user-friendly trust management platform built with Next.js, Supabase, and TypeScript.
+
+## Recent Updates
+
+We've made several important improvements to the platform:
+
+- **Fixed authentication issues**: Improved sign-out functionality and error handling for invalid credentials
+- **Resolved organization creation problems**: Fixed infinite recursion error in RLS policies using SECURITY DEFINER functions
+- **Added dedicated RLS fix script**: Simplified troubleshooting with targeted fix script for RLS policy issues
+- **Enhanced security**: Implemented secure database functions with proper privilege management
+- **Improved error handling**: Better user feedback across the application
+- **Updated documentation**: Added comprehensive troubleshooting guide and security documentation
+
+### Organization Management Enhancements
+- Fixed critical RLS policy infinite recursion issue affecting organization creation
+- Added organization management page with detailed view and editing capabilities
+- Implemented organization deletion functionality for administrators
+- Added placeholder pages for upcoming regulatory questionnaires and industry templates
+- Fixed organization timestamps to ensure proper creation dates
+
+### Security Enhancements
+- Added audit logging for sensitive database operations
+- Implemented input validation for SECURITY DEFINER functions
+- Enhanced database function security with proper parameter checks
+
+### Bug Fixes
+- Resolved infinite recursion in RLS policies via SECURITY DEFINER approach
+- Fixed organization creation date issues in database functions
+- Resolved navigation issues for organization management
+
+## Features
+
+- Secure authentication using Supabase Auth
+- Organization management with role-based permissions
+- Modern, responsive UI built with Next.js and TailwindCSS
+- PostgreSQL database with Row Level Security (RLS)
+- TypeScript for type safety throughout the codebase
 
 ## Project Structure
 
 ```
 simpletrust/
+├── docs/                  # Documentation
 ├── src/
-│   ├── frontend/     # Next.js frontend application
-│   ├── backend/      # Express + Supabase backend services
-│   └── shared/       # Shared types and utilities
-├── docs/             # Project documentation
-└── tests/            # End-to-end and integration tests
+│   ├── backend/           # Backend code and Supabase configuration
+│   │   ├── supabase/      # Supabase migrations and seed data
+│   │   ├── package.json   # Backend dependencies
+│   │   └── ...
+│   └── frontend/          # Next.js frontend application
+│       ├── components/    # React components
+│       ├── contexts/      # React contexts for state management
+│       ├── hooks/         # Custom React hooks
+│       ├── pages/         # Next.js pages
+│       ├── styles/        # CSS and styling
+│       ├── utils/         # Utility functions
+│       ├── package.json   # Frontend dependencies
+│       └── ...
+└── ...
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18.x or later
-- npm 9.x or later
-- Supabase account (for backend services)
+- Node.js 16+
+- npm or yarn
+- Docker (for running Supabase locally)
 
-### Frontend Setup
+### Setup
 
-1. Navigate to the frontend directory:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/simpletrust.git
+   cd simpletrust
+   ```
+
+2. Install frontend dependencies:
    ```bash
    cd src/frontend
-   ```
-
-2. Install dependencies:
-   ```bash
    npm install
    ```
 
-3. Create a local environment file:
+3. Install backend dependencies:
    ```bash
-   cp .env.example .env.local
-   ```
-   
-4. Update the environment variables in `.env.local` with your Supabase credentials.
-
-5. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-### Backend Setup
-
-1. Navigate to the backend directory:
-   ```bash
-   cd src/backend
-   ```
-
-2. Install dependencies:
-   ```bash
+   cd ../backend
    npm install
-   ```
-
-3. Install Supabase CLI globally (if not already installed):
-   ```bash
-   npm install -g supabase
-   ```
-
-4. Create a local environment file:
-   ```bash
-   cp .env.example .env
-   ```
-   
-5. Update the environment variables in `.env` with your Supabase credentials.
-
-6. Start the backend server:
-   ```bash
-   npm run dev
-   ```
-
-## Supabase Setup
-
-1. Create a new project in the [Supabase Dashboard](https://app.supabase.com).
-
-2. Get your project URL and anon key from the API settings page.
-
-3. Initialize Supabase locally (for development):
-   ```bash
-   cd src/backend
-   supabase init
    ```
 
 4. Start the local Supabase instance:
@@ -92,35 +93,41 @@ simpletrust/
    npm run supabase:start
    ```
 
-5. Apply the database migrations:
+5. Apply migrations and seed data:
    ```bash
-   npm run supabase:migrate
+   npm run migrate:safe
    ```
 
-## Technology Stack
+6. Start the frontend development server:
+   ```bash
+   cd ../frontend
+   npm run dev
+   ```
 
-- **Frontend**: Next.js, TypeScript, Tailwind CSS
-- **Backend**: Express.js, TypeScript
-- **Database**: PostgreSQL (via Supabase)
-- **Authentication**: Supabase Auth
-- **Hosting**: Vercel (frontend), Supabase (backend)
+7. Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
 
 ## Development
 
-- Run frontend tests: `cd src/frontend && npm run test`
-- Run backend tests: `cd src/backend && npm run test`
-- Lint code: `npm run lint` (run from either frontend or backend directory)
-- Format code: `npm run format` (run from either frontend or backend directory)
+### Frontend Development
 
-## Contributing
+- The frontend is built with Next.js and TypeScript
+- We use TailwindCSS for styling
+- State management is handled through React Context API and custom hooks
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+### Backend Development
+
+- Supabase provides the backend functionality
+- Migrations are managed through SQL files in `src/backend/supabase/migrations`
+- Database schema changes should be added as new migrations
+
+## Troubleshooting
+
+If you encounter any issues, please check the [Troubleshooting Guide](docs/troubleshooting.md) for common solutions.
 
 ## License
 
-This project is proprietary software. All rights reserved.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Acknowledgments
+## Contributing
 
-- This project follows the [Conventional Commits](https://www.conventionalcommits.org/) specification
-- Built with [Next.js](https://nextjs.org/) and [Supabase](https://supabase.com/) 
+Contributions are welcome! Please feel free to submit a Pull Request. 

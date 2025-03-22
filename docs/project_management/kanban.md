@@ -34,19 +34,15 @@ flowchart LR
 
 - [ ] **INFRA-001-004**: Configure CI/CD pipeline with GitHub Actions
 - [ ] **INFRA-001-005**: Set up monitoring and logging
-- [ ] **ORG-001-003**: Create industry-specific templates for automotive sector
-- [ ] **ORG-001-004**: Create industry-specific templates for aerospace sector
+- [ ] **ORG-001-004**: Create industry-specific templates for manufacturing sector
 - [ ] **ORG-001-005**: Implement business capability mapping visualization
 - [ ] **UX-001-003**: Design responsive layouts for tablet and mobile
 - [ ] **UX-001-004**: Create accessibility conformance testing plan
 
 ### Sprint Planning
 
-- [ ] **INFRA-001-001**: Set up Supabase backend infrastructure (Epic: E00)
 - [ ] **INFRA-001-002**: Implement user authentication system (Epic: E00)
 - [ ] **INFRA-001-003**: Configure Vercel deployment (Epic: E00)
-- [ ] **ORG-001-001**: Implement simplified regulatory questionnaire (Epic: E01)
-- [ ] **ORG-001-002**: Create industry-specific templates for manufacturing sector (Epic: E01)
 - [ ] **UX-001-001**: Design organizational scoping module UI (Epic: E00)
 - [ ] **UX-001-002**: Create basic design system for consistent UI (Epic: E00)
 - [ ] **ARP-001-000**: Set up AI service integration foundation (Epic: E05)
@@ -70,6 +66,12 @@ No items currently in user feedback phase.
 ### Done
 
 - [x] **INFRA-001-000**: Initialize Next.js project with TypeScript (Epic: E00)
+- [x] **INFRA-001-001**: Set up Supabase backend infrastructure (Epic: E00)
+- [x] **ORG-001-001**: Implement simplified regulatory questionnaire placeholder (Epic: E01)
+- [x] **ORG-001-002**: Create industry-specific templates placeholder for manufacturing sector (Epic: E01)
+- [x] **ORG-001-003**: Implement organization management features with CRUD operations (Epic: E01)
+- [x] **INFRA-001-006**: Fix critical RLS policy infinite recursion issue (Epic: E00)
+- [x] **INFRA-001-007**: Implement enhanced security with audit logging (Epic: E00)
 
 ## Upcoming Sprint: Sprint 2 - Unified Framework & AI Recommendation Foundation
 

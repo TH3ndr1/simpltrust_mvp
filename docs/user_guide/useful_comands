@@ -1,0 +1,12 @@
+Start supabase:
+cd /Users/tom/dev/simpletrust/src/backend && npm run supabase:start
+
+# In the backend directory
+npm run supabase:setup  # Sets up Supabase and applies migrations
+# or if you only need to apply migrations
+npm run migrate:custom
+
+
+#open supabase webviever
+http://localhost:54323
+

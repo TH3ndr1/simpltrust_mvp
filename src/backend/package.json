@@ -3,15 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node dist/server.js",
-    "dev": "nodemon src/server.ts",
-    "build": "tsc",
+    "start": "supabase start",
+    "dev": "supabase start",
+    "build": "echo 'No build step needed'",
+    "migrate": "node scripts/apply-migrations.js",
+    "migrate:safe": "node scripts/apply-migrations.js --safe",
+    "migrate:force": "node scripts/apply-migrations.js --force",
+    "reset:dev": "node scripts/apply-migrations.js --reset",
+    "connect": "supabase db connect",
+    "db": "node scripts/db-connect.js",
+    "stop": "supabase stop",
+    "fix-rls": "node scripts/fix-rls-policies.js",
+    "fix-permissions": "node scripts/fix-permission.js",
+    "enhance-security": "node scripts/enhance-security.js",
+    "apply-security": "node scripts/apply-security.js",
+    "fix-dates": "node scripts/fix-dates.js",
     "lint": "eslint . --ext .ts",
     "supabase:start": "supabase start",
     "supabase:stop": "supabase stop",
-    "supabase:migrate": "supabase db push"
+    "supabase:migrate": "supabase db push",
+    "supabase:setup": "./scripts/setup-supabase.sh",
+    "migrate:custom": "node scripts/apply-migrations.js"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/supabase-js": "^2.39.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -21,13 +36,17 @@
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.12.10",
+    "@types/pg": "^8.11.11",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "eslint": "^8.57.0",
+    "fs-extra": "^11.3.0",
     "nodemon": "^3.1.0",
+    "pg": "^8.14.1",
     "supabase": "^1.151.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2"
   }
-} 
+}
